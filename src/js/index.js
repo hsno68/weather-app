@@ -1,7 +1,10 @@
 import "../css/styles.css";
 import { API_KEY } from "./apiKey.js";
+import setupEventListeners from "./setupEventListeners.js";
 
-async function fetchWeather(location = "Los Angeles") {
+setupEventListeners();
+
+async function fetchWeatherData(location = "Los Angeles") {
   try {
     const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?key=${API_KEY}`, { mode: "cors" });
 

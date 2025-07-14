@@ -20,5 +20,19 @@ body {
     "Open Sans",
     "Helvetica Neue",
     sans-serif;
+  color: #e4e4e7;
   background-color: #212121;
+}
+
+label {
+  cursor: pointer;
+}
+
+input {
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  appearance: none;
+  border: none;
+  border-radius: 8px;
+  outline: none;
 }
