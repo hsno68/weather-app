@@ -7,6 +7,7 @@
 }
 
 body {
+  padding: 2rem;
   height: 100vh;
   font-family:
     system-ui,
@@ -22,6 +23,15 @@ body {
     sans-serif;
   color: #e4e4e7;
   background-color: #212121;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+form {
+  display: none;
 }
 
 label {
@@ -35,4 +45,36 @@ input {
   border: none;
   border-radius: 8px;
   outline: none;
+}
+
+.today-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.location {
+  font-weight: normal;
+}
+
+.temperature {
+  font-size: 3rem;
+}
+
+.high-low-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.hourly-weather {
+  border: 1px solid green;
+  width: 80%;
+  height: 200px;
+}
+
+.forecast {
+  border: 1px solid white;
+  width: 40%;
+  height: 500px;
 }

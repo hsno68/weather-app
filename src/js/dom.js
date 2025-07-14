@@ -10,4 +10,9 @@ export default function getDOMElements() {
 
 const selectors = {
   form: "#form",
+  location: ".location",
+  temperature: ".temperature",
+  conditions: ".conditions",
+  todayHigh: ".high",
+  todayLow: ".low",
 };
