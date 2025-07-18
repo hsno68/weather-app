@@ -58,8 +58,13 @@ input {
   font-weight: normal;
 }
 
-.temperature {
-  font-size: 3rem;
+.temperature-now {
+  font-size: 4rem;
+}
+
+.temperature-now::after {
+  content: "°";
+  position: absolute;
 }
 
 .high-low-container {
@@ -67,13 +72,56 @@ input {
   gap: 1rem;
 }
 
-.hourly-weather {
-  border: 1px solid green;
+.hourly-forecast-card {
+  padding: 1rem;
   width: 80%;
-  height: 200px;
+  display: flex;
+  gap: 5px;
+  border-radius: 1rem;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(136, 136, 136, 0.5) transparent;
 }
 
-.forecast {
+.hourly-forecast-card:active {
+  cursor: grabbing;
+}
+
+.hourly-forecast-card::-webkit-scrollbar {
+  height: 8px;
+}
+.hourly-forecast-card::-webkit-scrollbar-track {
+  background: transparent;
+}
+.hourly-forecast-card::-webkit-scrollbar-thumb {
+  background-color: rgba(136, 136, 136, 0.5);
+  border-radius: 12px;
+}
+.hourly-forecast-card::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(136, 136, 136, 0.8);
+}
+
+.hourly-forecast-card::-webkit-scrollbar-button {
+  display: none;
+  height: 0;
+  width: 0;
+}
+
+.forecast-card {
+  flex-shrink: 0;
+  min-width: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.forecast-card h2 {
+  font-weight: normal;
+}
+
+.weekly-forecast-card {
   border: 1px solid white;
   width: 40%;
   height: 500px;

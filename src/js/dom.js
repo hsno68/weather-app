@@ -9,10 +9,11 @@ export default function getDOMElements() {
 }
 
 const selectors = {
-  form: "#form",
-  location: ".location",
-  temperature: ".temperature",
-  conditions: ".conditions",
-  todayHigh: ".high",
-  todayLow: ".low",
+  $form: "#form",
+  $location: ".location",
+  $tempNow: ".temperature-now",
+  $conditionsNow: ".conditions-now",
+  $todayHigh: ".today-high",
+  $todayLow: ".today-low",
+  $hourlyForecast: ".hourly-forecast-card",
 };
