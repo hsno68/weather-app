@@ -3,7 +3,7 @@ import { API_KEY } from "./apiKey.js";
 async function fetchWeatherData(location = "Singapore") {
   try {
     const response = await fetch(
-      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}/next9days?key=${API_KEY}`,
+      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}/next9days?key=${API_KEY}&iconSet=icons2`,
       { mode: "cors" }
     );
 
