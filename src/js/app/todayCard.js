@@ -1,5 +1,5 @@
-import getDOMElements from "./dom.js";
-import weatherData from "./weatherData.js";
+import getDOMElements from "../dom.js";
+import weatherData from "../weatherData/weatherData.js";
 
 export default function renderTodayCard() {
   const { $location, $tempNow, $conditionsNow, $todayHigh, $todayLow } = getDOMElements();

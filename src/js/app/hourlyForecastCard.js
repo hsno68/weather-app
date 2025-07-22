@@ -1,7 +1,7 @@
-import getDOMElements from "./dom.js";
-import weatherData from "./weatherData.js";
-import getWeatherIcon from "./weatherIconMap.js";
-import { formatHourLabel } from "./utility.js";
+import getDOMElements from "../dom.js";
+import weatherData from "../weatherData/weatherData.js";
+import getWeatherIcon from "../weatherData/weatherIconMap.js";
+import { formatHourLabel } from "../utility.js";
 
 function getForecastHours() {
   const { todayHours, tomorrowHours } = weatherData;

@@ -1,4 +1,4 @@
-import { API_KEY } from "./apiKey.js";
+import { API_KEY } from "../apiKey.js";
 
 async function fetchWeatherData(location = "Singapore") {
   try {
@@ -24,6 +24,7 @@ function parseWeatherData(data) {
   const tomorrow = data.days[1];
   const current = data.currentConditions;
   return {
+    days: data.days,
     location: data.resolvedAddress,
     tempNow: current.temp,
     conditionsNow: current.conditions,
