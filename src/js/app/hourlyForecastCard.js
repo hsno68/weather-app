@@ -18,7 +18,11 @@ function getForecastHours() {
 
   const fullForecastHours = todayRemainingHours.concat(tomorrowAdditionalHours);
 
-  const mappedForecastHours = fullForecastHours.map((hour) => {
+  return fullForecastHours;
+}
+
+function mapForecastHours(forecastHours) {
+  const mappedForecastHours = forecastHours.map((hour) => {
     return {
       time: formatHourLabel(hour.datetime),
       icon: getWeatherIcon(hour.icon),
@@ -42,7 +46,7 @@ export default function renderHourlyForecastCard() {
   });
   $hourlyForecast.appendChild(currentForecastCard);
 
-  const fullForecastHours = getForecastHours();
+  const fullForecastHours = mapForecastHours(getForecastHours());
   // First card in the forecast is the "now" card, replacing the current hour forecast
   const remainingForecastHours = fullForecastHours.slice(1);
   for (const hour of remainingForecastHours) {
