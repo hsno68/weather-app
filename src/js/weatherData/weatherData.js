@@ -25,6 +25,7 @@ function parseWeatherData(data) {
   const current = data.currentConditions;
   return {
     days: data.days,
+    hourNow: current.datetime,
     location: data.resolvedAddress,
     tempNow: current.temp,
     conditionsNow: current.conditions,

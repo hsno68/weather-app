@@ -25,13 +25,13 @@ export default function renderHourlyForecastCard() {
 }
 
 function getForecastHours() {
-  const { todayHours, tomorrowHours } = weatherData;
+  const { hourNow, todayHours, tomorrowHours } = weatherData;
 
   const FORECAST_HOURS = 24; // Hours expected in forecast
 
-  const currentHour = new Date().getHours();
+  const currentHourLocal = parseInt(hourNow.split(":")[0], 10);
 
-  const todayRemainingHours = todayHours.slice(currentHour);
+  const todayRemainingHours = todayHours.slice(currentHourLocal);
   // Remaining forecast hours out of FORECAST_HOURS by subtracting today's remaining hours
   const remainingForecastHours = FORECAST_HOURS - todayRemainingHours.length;
   // Hours needed from tomorrow to fill out forecast, +1 to include 24th hour from current hour
