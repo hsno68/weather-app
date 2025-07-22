@@ -3,6 +3,27 @@ import weatherData from "../weatherData/weatherData.js";
 import getWeatherIcon from "../weatherData/weatherIconMap.js";
 import { formatHourLabel } from "../utility.js";
 
+export default function renderHourlyForecastCard() {
+  const { $hourlyForecast } = getDOMElements();
+  const { tempNow, iconNow } = weatherData;
+
+  const currentForecastCard = createForecastCard({
+    time: "Now",
+    icon: getWeatherIcon(iconNow),
+    iconAltText: iconNow,
+    temp: `${Math.round(tempNow)}°`,
+  });
+  $hourlyForecast.appendChild(currentForecastCard);
+
+  const fullForecastHours = mapForecastHours(getForecastHours());
+  // First card in the forecast is the "now" card, replacing the current hour forecast
+  const remainingForecastHours = fullForecastHours.slice(1);
+  for (const hour of remainingForecastHours) {
+    const hourlyForecastCard = createForecastCard(hour);
+    $hourlyForecast.appendChild(hourlyForecastCard);
+  }
+}
+
 function getForecastHours() {
   const { todayHours, tomorrowHours } = weatherData;
 
@@ -32,27 +53,6 @@ function mapForecastHours(forecastHours) {
   });
 
   return mappedForecastHours;
-}
-
-export default function renderHourlyForecastCard() {
-  const { $hourlyForecast } = getDOMElements();
-  const { tempNow, iconNow } = weatherData;
-
-  const currentForecastCard = createForecastCard({
-    time: "Now",
-    icon: getWeatherIcon(iconNow),
-    iconAltText: iconNow,
-    temp: `${Math.round(tempNow)}°`,
-  });
-  $hourlyForecast.appendChild(currentForecastCard);
-
-  const fullForecastHours = mapForecastHours(getForecastHours());
-  // First card in the forecast is the "now" card, replacing the current hour forecast
-  const remainingForecastHours = fullForecastHours.slice(1);
-  for (const hour of remainingForecastHours) {
-    const hourlyForecastCard = createForecastCard(hour);
-    $hourlyForecast.appendChild(hourlyForecastCard);
-  }
 }
 
 function createForecastCard(hour) {
