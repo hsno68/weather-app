@@ -107,7 +107,7 @@ input {
   width: 0;
 }
 
-.forecast-card {
+.hourly-forecast-card > div {
   flex-shrink: 0;
   min-width: 10%;
   display: flex;

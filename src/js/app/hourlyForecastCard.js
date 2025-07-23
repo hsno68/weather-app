@@ -57,7 +57,6 @@ function mapForecastHours(forecastHours) {
 
 function createForecastCard(hour) {
   const forecastCard = document.createElement("div");
-  forecastCard.classList.add("forecast-card");
 
   const time = document.createElement("h2");
   time.textContent = hour.time;
