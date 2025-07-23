@@ -19,7 +19,7 @@ export default function renderHourlyForecastCard() {
   // First card in the forecast is the "now" card, replacing the current hour forecast
   const remainingForecastHours = fullForecastHours.slice(1);
   for (const hour of remainingForecastHours) {
-    const hourlyForecastCard = createForecastCard(hour);
+    const hourlyForecastCard = createHourlyForecastCard(hour);
     $hourlyForecast.appendChild(hourlyForecastCard);
   }
 }
@@ -55,7 +55,7 @@ function mapForecastHours(forecastHours) {
   return mappedForecastHours;
 }
 
-function createForecastCard(hour) {
+function createHourlyForecastCard(hour) {
   const forecastCard = document.createElement("div");
 
   const time = document.createElement("h2");
