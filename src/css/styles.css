@@ -39,8 +39,11 @@ body {
   gap: 2rem;
 }
 
-form {
-  display: none;
+.form-control-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
 label {
@@ -50,6 +53,8 @@ label {
 form input {
   padding: 0.5rem 0.75rem;
   font-size: 1rem;
+  color: var(--color-text-primary);
+  background-color: var(--color-background-contrast);
   appearance: none;
   border: none;
   border-radius: 8px;

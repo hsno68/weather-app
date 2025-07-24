@@ -1,10 +1,12 @@
 import getDOMElements from "../dom.js";
-import weatherData from "../weatherData/weatherData.js";
+import { getWeatherData } from "../weatherData/weatherStorage.js";
 import getWeatherIcon from "../weatherData/weatherIconMap.js";
 
 export default function renderDailyForecastCard() {
   const { $dailyForecast } = getDOMElements();
-  const { days, weekHigh, weekLow } = weatherData;
+  const { days, weekHigh, weekLow } = getWeatherData();
+
+  $dailyForecast.replaceChildren();
 
   const dailyForecasts = mapDailyForecasts(days);
 
@@ -20,7 +22,7 @@ function mapDailyForecasts(days) {
     return {
       day: dayLabel,
       icon: getWeatherIcon(day.icon),
-      iconAltTex: day.icon,
+      iconAltText: day.icon,
       low: Math.round(day.tempmin),
       high: Math.round(day.tempmax),
     };
@@ -76,6 +78,8 @@ function createTempRange(forecast, weekMin, weekMax) {
   return rangeContainer;
 }
 
-function getDayOfWeek(date) {
-  return new Date(date).toLocaleDateString("en-US", { weekday: "short" });
+function getDayOfWeek(dateString) {
+  const [year, month, day] = dateString.split("-").map(Number);
+  const date = new Date(year, month - 1, day);
+  return date.toLocaleDateString("en-US", { weekday: "short" });
 }

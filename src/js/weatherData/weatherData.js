@@ -1,6 +1,6 @@
 import { API_KEY } from "../apiKey.js";
 
-async function fetchWeatherData(location = "Singapore") {
+export async function fetchWeatherData(location = "Los Angeles") {
   try {
     const response = await fetch(
       `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}/next9days?key=${API_KEY}&iconSet=icons2`,
@@ -19,7 +19,7 @@ async function fetchWeatherData(location = "Singapore") {
   }
 }
 
-function parseWeatherData(data) {
+export function parseWeatherData(data) {
   const today = data.days[0];
   const tomorrow = data.days[1];
   const current = data.currentConditions;
@@ -40,8 +40,3 @@ function parseWeatherData(data) {
     tomorrowHours: tomorrow.hours,
   };
 }
-
-const data = await fetchWeatherData();
-const weatherData = parseWeatherData(data);
-
-export default weatherData;

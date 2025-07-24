@@ -1,11 +1,13 @@
 import getDOMElements from "../dom.js";
-import weatherData from "../weatherData/weatherData.js";
+import { getWeatherData } from "../weatherData/weatherStorage.js";
 import getWeatherIcon from "../weatherData/weatherIconMap.js";
 import { formatHourLabel } from "../utility.js";
 
 export default function renderHourlyForecastCard() {
   const { $hourlyForecast } = getDOMElements();
-  const { tempNow, iconNow } = weatherData;
+  const { tempNow, iconNow } = getWeatherData();
+
+  $hourlyForecast.replaceChildren();
 
   // Need to create custom "Now" card because the first card utilizes real-time "current conditions" in API instead of the average from current hour
   const currentForecastCard = createHourlyForecastCard({
@@ -26,7 +28,7 @@ export default function renderHourlyForecastCard() {
 }
 
 function getForecastHours() {
-  const { hourNow, todayHours, tomorrowHours } = weatherData;
+  const { hourNow, todayHours, tomorrowHours } = getWeatherData();
 
   const FORECAST_HOURS = 24; // Hours expected in forecast
 
@@ -44,7 +46,7 @@ function getForecastHours() {
 }
 
 function mapForecastHours(forecastHours) {
-  const mappedForecastHours = forecastHours.map((hour, index) => {
+  const mappedForecastHours = forecastHours.map((hour) => {
     return {
       time: formatHourLabel(hour.datetime),
       icon: getWeatherIcon(hour.icon),

@@ -10,6 +10,7 @@ export default function getDOMElements() {
 
 const selectors = {
   $form: "#form",
+  $input: "input#search",
   $location: ".location",
   $tempNow: ".temperature-now",
   $conditionsNow: ".conditions-now",
