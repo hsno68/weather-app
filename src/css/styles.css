@@ -68,15 +68,15 @@ form input {
   gap: 0.5rem;
 }
 
-.location {
+.today-card > :nth-child(1) {
   font-weight: normal;
 }
 
-.temperature-now {
+.today-card > :nth-child(2) {
   font-size: 4rem;
 }
 
-.temperature-now::after {
+.today-card > :nth-child(2)::after {
   content: "°";
   position: absolute;
 }
