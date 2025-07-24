@@ -23,6 +23,8 @@ function parseWeatherData(data) {
   const today = data.days[0];
   const tomorrow = data.days[1];
   const current = data.currentConditions;
+  const weekMin = Math.min(...data.days.map((day) => day.tempmin));
+  const weekMax = Math.max(...data.days.map((day) => day.tempmax));
   return {
     days: data.days,
     hourNow: current.datetime,
@@ -32,6 +34,8 @@ function parseWeatherData(data) {
     iconNow: current.icon,
     todayHigh: today.tempmax,
     todayLow: today.tempmin,
+    weekHigh: weekMin,
+    weekLow: weekMax,
     todayHours: today.hours,
     tomorrowHours: tomorrow.hours,
   };

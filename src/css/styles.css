@@ -6,6 +6,15 @@
   box-sizing: border-box;
 }
 
+:root {
+  --color-background: #212121;
+  --color-text-primary: #e4e4e7;
+  --color-background-contrast: #3a3a3a;
+
+  --range-gradient: linear-gradient(90deg, #ffe259, #ffa751);
+  --range-box-shadow: 0 0 6px rgba(255, 167, 81, 0.5);
+}
+
 body {
   padding: 2rem;
   height: 100vh;
@@ -21,8 +30,8 @@ body {
     "Open Sans",
     "Helvetica Neue",
     sans-serif;
-  color: #e4e4e7;
-  background-color: #212121;
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -107,7 +116,7 @@ form input {
   width: 0;
 }
 
-.hourly-forecast-card > div {
+.hourly-card {
   flex-shrink: 0;
   min-width: 10%;
   display: flex;
@@ -117,7 +126,7 @@ form input {
   gap: 0.5rem;
 }
 
-.hourly-forecast-card > div h2 {
+.hourly-card h2 {
   font-weight: normal;
 }
 
@@ -129,12 +138,43 @@ form input {
   gap: 1rem;
 }
 
-.daily-forecast-card > div {
+.daily-card {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   justify-items: center;
+  gap: 0.5rem;
 }
 
-.daily-forecast-card > div > :nth-child(1) {
+.daily-card > :nth-child(1) {
   justify-self: start;
+}
+
+.daily-card > :nth-child(3) {
+  justify-self: end;
+}
+
+.daily-card > :nth-child(4) {
+  align-self: center;
+}
+
+.daily-card > :nth-child(5) {
+  justify-self: start;
+}
+
+.range-container {
+  position: relative;
+  height: 4px;
+  background: var(--color-background-contrast);
+  border-radius: 2px;
+  overflow: hidden;
+  width: 100%;
+  margin: 0 0.5rem;
+}
+
+.range-bar {
+  position: absolute;
+  height: 100%;
+  border-radius: 2px;
+  background: var(--range-gradient);
+  box-shadow: var(--range-box-shadow);
 }
