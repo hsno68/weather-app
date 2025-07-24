@@ -7,7 +7,7 @@ export default function renderHourlyForecastCard() {
   const { $hourlyForecast } = getDOMElements();
   const { tempNow, iconNow } = weatherData;
 
-  const currentForecastCard = createForecastCard({
+  const currentForecastCard = createHourlyForecastCard({
     time: "Now",
     icon: getWeatherIcon(iconNow),
     iconAltText: iconNow,

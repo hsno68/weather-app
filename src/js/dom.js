@@ -16,4 +16,5 @@ const selectors = {
   $todayHigh: ".today-high",
   $todayLow: ".today-low",
   $hourlyForecast: ".hourly-forecast-card",
+  $dailyForecast: ".daily-forecast-card",
 };
