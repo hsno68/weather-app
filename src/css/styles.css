@@ -89,6 +89,7 @@ form input {
 .hourly-forecast-card {
   padding: 1rem;
   width: 80%;
+  min-height: max-content;
   display: flex;
   gap: 5px;
   border-radius: 1rem;

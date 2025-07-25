@@ -4,3 +4,12 @@ export function formatHourLabel(datetime) {
   const period = hour >= 12 ? "PM" : "AM";
   return `${hour12} ${period}`;
 }
+
+export function createLabelElement({ tag, text, className }) {
+  const element = document.createElement(tag);
+  element.textContent = text;
+  if (className) {
+    element.classList.add(className);
+  }
+  return element;
+}

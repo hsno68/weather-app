@@ -1,5 +1,6 @@
 import getDOMElements from "../dom.js";
 import { getWeatherData } from "../weatherData/weatherStorage.js";
+import { createLabelElement } from "../utility.js";
 
 export default function renderTodayCard() {
   const { $todayForecast } = getDOMElements();
@@ -50,13 +51,4 @@ function createTodayCard({ location, tempNow, conditionsNow, todayHigh, todayLow
   todayCard.append(locationLabel, temperatureLabel, conditionsLabel, highLowContainer);
 
   return todayCard;
-}
-
-function createLabelElement({ tag, text, className }) {
-  const element = document.createElement(tag);
-  element.textContent = text;
-  if (className) {
-    element.classList.add(className);
-  }
-  return element;
 }
