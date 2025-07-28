@@ -11,7 +11,7 @@ export default function getDOMElements() {
 const selectors = {
   $form: "#form",
   $input: "input#search",
-  $todayForecast: ".today-forecast-card",
-  $hourlyForecast: ".hourly-forecast-card",
-  $dailyForecast: ".daily-forecast-card",
+  $todayForecast: ".today-forecast-section",
+  $hourlyForecast: ".hourly-forecast-section",
+  $dailyForecast: ".daily-forecast-section",
 };

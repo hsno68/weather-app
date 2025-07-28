@@ -68,15 +68,15 @@ form input {
   gap: 0.5rem;
 }
 
-.today-card > :nth-child(1) {
+.today-card > .location {
   font-weight: normal;
 }
 
-.today-card > :nth-child(2) {
+.today-card > .temperature {
   font-size: 4rem;
 }
 
-.today-card > :nth-child(2)::after {
+.today-card > .temperature::after {
   content: "°";
   position: absolute;
 }
@@ -86,7 +86,7 @@ form input {
   gap: 1rem;
 }
 
-.hourly-forecast-card {
+.hourly-forecast-section {
   padding: 1rem;
   width: 80%;
   min-height: max-content;
@@ -98,25 +98,25 @@ form input {
   scrollbar-color: rgba(136, 136, 136, 0.5) transparent;
 }
 
-.hourly-forecast-card:active {
+.hourly-forecast-section:active {
   cursor: grabbing;
 }
 
-.hourly-forecast-card::-webkit-scrollbar {
+.hourly-forecast-section::-webkit-scrollbar {
   height: 8px;
 }
-.hourly-forecast-card::-webkit-scrollbar-track {
+.hourly-forecast-section::-webkit-scrollbar-track {
   background: transparent;
 }
-.hourly-forecast-card::-webkit-scrollbar-thumb {
+.hourly-forecast-section::-webkit-scrollbar-thumb {
   background-color: rgba(136, 136, 136, 0.5);
   border-radius: 12px;
 }
-.hourly-forecast-card::-webkit-scrollbar-thumb:hover {
+.hourly-forecast-section::-webkit-scrollbar-thumb:hover {
   background-color: rgba(136, 136, 136, 0.8);
 }
 
-.hourly-forecast-card::-webkit-scrollbar-button {
+.hourly-forecast-section::-webkit-scrollbar-button {
   display: none;
   height: 0;
   width: 0;
@@ -136,7 +136,7 @@ form input {
   font-weight: normal;
 }
 
-.daily-forecast-card {
+.daily-forecast-section {
   padding: 1rem;
   min-width: 50%;
   display: flex;
