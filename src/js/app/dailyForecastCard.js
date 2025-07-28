@@ -1,6 +1,7 @@
 import getDOMElements from "../dom.js";
 import { getWeatherData } from "../weatherData/weatherStorage.js";
 import getWeatherIcon from "../weatherData/weatherIconMap.js";
+import { getDayOfWeek } from "../utility.js";
 
 export default function renderDailyForecastCard() {
   const { $dailyForecast } = getDOMElements();
@@ -76,10 +77,4 @@ function createTempRange(forecast, weekMin, weekMax) {
   rangeContainer.appendChild(rangeBar);
 
   return rangeContainer;
-}
-
-function getDayOfWeek(dateString) {
-  const [year, month, day] = dateString.split("-").map(Number);
-  const date = new Date(year, month - 1, day);
-  return date.toLocaleDateString("en-US", { weekday: "short" });
 }
