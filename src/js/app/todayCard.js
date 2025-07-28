@@ -13,8 +13,10 @@ export default function renderTodayCard() {
 }
 
 function createTodayCard({ location, tempNow, conditionsNow, todayHigh, todayLow }) {
-  const todayCard = document.createElement("div");
-  todayCard.classList.add("today-card");
+  const todayCard = createLabelElement({
+    tag: "div",
+    className: "today-card",
+  });
 
   const locationLabel = createLabelElement({
     tag: "h1",
