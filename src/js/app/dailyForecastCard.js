@@ -1,7 +1,7 @@
 import getDOMElements from "../dom.js";
 import { getWeatherData } from "../weatherData/weatherStorage.js";
 import getWeatherIcon from "../weatherData/weatherIconMap.js";
-import { getDayOfWeek } from "../utility.js";
+import { createLabelElement, createImageElement, getDayOfWeek } from "../utility.js";
 
 export default function renderDailyForecastCard() {
   const { $dailyForecast } = getDOMElements();
@@ -9,12 +9,12 @@ export default function renderDailyForecastCard() {
 
   $dailyForecast.replaceChildren();
 
-  const dailyForecasts = mapDailyForecasts(days);
+  const fullDailyForecasts = mapDailyForecasts(days);
 
-  dailyForecasts.forEach((dailyForecast) => {
-    const forecast = createDailyForecastCard(dailyForecast, weekHigh, weekLow);
-    $dailyForecast.appendChild(forecast);
-  });
+  for (const dailyForecast of fullDailyForecasts) {
+    const dailyForecastCard = createDailyForecastCard(dailyForecast, weekHigh, weekLow);
+    $dailyForecast.appendChild(dailyForecastCard);
+  }
 }
 
 function mapDailyForecasts(days) {
@@ -24,47 +24,61 @@ function mapDailyForecasts(days) {
       day: dayLabel,
       icon: getWeatherIcon(icon),
       iconAltText: icon,
-      low: Math.round(tempmin),
-      high: Math.round(tempmax),
+      dayLow: Math.round(tempmin),
+      dayHigh: Math.round(tempmax),
     };
   });
 }
 
-function createDailyForecastCard(forecast, weekMin, weekMax) {
-  const forecastCard = document.createElement("div");
-  forecastCard.classList.add("daily-card");
+function createDailyForecastCard({ day, icon, iconAltText, dayLow, dayHigh }, weekMin, weekMax) {
+  const forecastCard = createLabelElement({
+    tag: "div",
+    className: "daily-card",
+  });
 
-  const day = document.createElement("h2");
-  day.textContent = forecast.day;
+  const dayLabel = createLabelElement({
+    tag: "h2",
+    text: day,
+    className: "day",
+  });
 
-  const icon = document.createElement("img");
-  icon.src = forecast.icon;
-  icon.alt = forecast.iconAltText;
+  const iconImg = createImageElement({
+    src: icon,
+    alt: iconAltText,
+  });
 
-  const tempLow = document.createElement("h2");
-  tempLow.textContent = `${forecast.low}°`;
+  const tempLowLabel = createLabelElement({
+    tag: "h2",
+    text: `${dayLow}°`,
+  });
 
-  const tempHigh = document.createElement("h2");
-  tempHigh.textContent = `${forecast.high}°`;
+  const tempHighLabel = createLabelElement({
+    tag: "h2",
+    text: `${dayHigh}°`,
+  });
 
-  const rangeContainer = createTempRange(forecast, weekMin, weekMax);
+  const rangeContainer = createTempRange(dayLow, dayHigh, weekMin, weekMax);
 
-  forecastCard.append(day, icon, tempLow, rangeContainer, tempHigh);
+  forecastCard.append(dayLabel, iconImg, tempLowLabel, rangeContainer, tempHighLabel);
 
   return forecastCard;
 }
 
-function createTempRange(forecast, weekMin, weekMax) {
-  const rangeContainer = document.createElement("div");
-  rangeContainer.classList.add("range-container");
+function createTempRange(dayLow, dayHigh, weekMin, weekMax) {
+  const rangeContainer = createLabelElement({
+    tag: "div",
+    className: "range-container",
+  });
 
-  const rangeBar = document.createElement("div");
-  rangeBar.classList.add("range-bar");
+  const rangeBar = createLabelElement({
+    tag: "div",
+    className: "range-bar",
+  });
 
   const min = Number(weekMin);
   const max = Number(weekMax);
-  const low = Number(forecast.low);
-  const high = Number(forecast.high);
+  const low = Number(dayLow);
+  const high = Number(dayHigh);
 
   const rangeStartPercent = ((low - min) / (max - min)) * 100;
   const rangeWidthPercent = ((high - low) / (max - min)) * 100;

@@ -11,8 +11,8 @@ export default function renderHourlyForecastCard() {
   const fullForecastHours = mapForecastHours(getForecastHours());
 
   for (const hour of fullForecastHours) {
-    const hourlyCard = createHourlyForecastCard(hour);
-    $hourlyForecast.appendChild(hourlyCard);
+    const hourlyForecastCard = createHourlyForecastCard(hour);
+    $hourlyForecast.appendChild(hourlyForecastCard);
   }
 }
 

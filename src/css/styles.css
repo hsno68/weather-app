@@ -151,20 +151,12 @@ form input {
   gap: 0.5rem;
 }
 
-.daily-card > :nth-child(1) {
+.daily-card > .day {
   justify-self: start;
 }
 
-.daily-card > :nth-child(3) {
-  justify-self: end;
-}
-
-.daily-card > :nth-child(4) {
+.daily-card > .range-container {
   align-self: center;
-}
-
-.daily-card > :nth-child(5) {
-  justify-self: start;
 }
 
 .range-container {
