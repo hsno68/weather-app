@@ -59,7 +59,7 @@ function mapForecastHours(forecastHours) {
 function createHourlyForecastCard({ time, icon, iconAltText, temp }) {
   const forecastCard = createLabelElement({
     tag: "div",
-    className: "today-card",
+    className: "hourly-card",
   });
 
   const timeLabel = createLabelElement({
