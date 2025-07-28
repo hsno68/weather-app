@@ -27,7 +27,7 @@ export function parseWeatherData(data) {
   const weekMax = Math.max(...data.days.map((day) => day.tempmax));
   return {
     days: data.days,
-    hourNow: current.datetime,
+    epochNow: current.datetimeEpoch,
     location: data.resolvedAddress,
     tempNow: current.temp,
     conditionsNow: current.conditions,

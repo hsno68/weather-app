@@ -7,9 +7,21 @@ export function formatHourLabel(datetime) {
 
 export function createLabelElement({ tag, text, className }) {
   const element = document.createElement(tag);
-  element.textContent = text;
+
+  if (text) {
+    element.textContent = text;
+  }
+
   if (className) {
     element.classList.add(className);
   }
+
+  return element;
+}
+
+export function createImageElement({ src, alt }) {
+  const element = document.createElement("img");
+  element.src = src;
+  element.alt = alt;
   return element;
 }

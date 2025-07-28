@@ -19,11 +19,13 @@ function createTodayCard({ location, tempNow, conditionsNow, todayHigh, todayLow
   const locationLabel = createLabelElement({
     tag: "h1",
     text: location,
+    className: "location",
   });
 
   const temperatureLabel = createLabelElement({
     tag: "p",
     text: Math.round(tempNow),
+    className: "temperature",
   });
 
   const conditionsLabel = createLabelElement({

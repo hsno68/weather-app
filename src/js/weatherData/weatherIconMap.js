@@ -11,6 +11,10 @@ import iconPartlyCloudyNight from "../../css/images/partly-cloudy-night.svg";
 import iconClearDay from "../../css/images/clear-day.svg";
 import iconClearNight from "../../css/images/clear-night.svg";
 
+export default function getWeatherIcon(weatherIcon) {
+  return weatherIconMap[weatherIcon];
+}
+
 const weatherIconMap = {
   "snow-showers-day": iconSnow,
   "snow-showers-night": iconSnow,
@@ -30,7 +34,3 @@ const weatherIconMap = {
   wind: iconWind,
   cloudy: iconCloudy,
 };
-
-export default function getWeatherIcon(weatherIcon) {
-  return weatherIconMap[weatherIcon];
-}
