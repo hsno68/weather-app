@@ -18,18 +18,16 @@ export default function renderDailyForecastCard() {
 }
 
 function mapDailyForecasts(days) {
-  const mappedDailyForecast = days.map((day, index) => {
-    const dayLabel = index === 0 ? "Today" : getDayOfWeek(day.datetime);
+  return days.map(({ datetime, icon, tempmin, tempmax }, index) => {
+    const dayLabel = index === 0 ? "Today" : getDayOfWeek(datetime);
     return {
       day: dayLabel,
-      icon: getWeatherIcon(day.icon),
-      iconAltText: day.icon,
-      low: Math.round(day.tempmin),
-      high: Math.round(day.tempmax),
+      icon: getWeatherIcon(icon),
+      iconAltText: icon,
+      low: Math.round(tempmin),
+      high: Math.round(tempmax),
     };
   });
-
-  return mappedDailyForecast;
 }
 
 function createDailyForecastCard(forecast, weekMin, weekMax) {
