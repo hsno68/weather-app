@@ -5,6 +5,12 @@ export function formatHourLabel(datetime) {
   return `${hour12} ${period}`;
 }
 
+function getDayOfWeek(dateString) {
+  const [year, month, day] = dateString.split("-").map(Number);
+  const date = new Date(year, month - 1, day);
+  return date.toLocaleDateString("en-US", { weekday: "short" });
+}
+
 export function createLabelElement({ tag, text, className }) {
   const element = document.createElement(tag);
 
