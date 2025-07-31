@@ -1,7 +1,7 @@
 import getDOMElements from "../dom.js";
 import { getWeatherData } from "../weatherData/weatherStorage.js";
 import getWeatherIcon from "../weatherData/weatherIconMap.js";
-import { createLabelElement, createImageElement, getDayOfWeek } from "../utility.js";
+import { createLabelElement, createImageElement, formatDateLabel } from "../utility.js";
 
 export default function renderDailyForecastCard() {
   const { $dailyForecast } = getDOMElements();
@@ -19,9 +19,10 @@ export default function renderDailyForecastCard() {
 
 function mapDailyForecasts(days) {
   return days.map(({ datetime, icon, tempmin, tempmax }, index) => {
-    const dayLabel = index === 0 ? "Today" : getDayOfWeek(datetime);
+    const dayLabel = index === 0 ? "Today" : formatDateLabel(datetime, { mode: "day" });
     return {
       day: dayLabel,
+      date: formatDateLabel(datetime, { mode: "date" }),
       icon: getWeatherIcon(icon),
       iconAltText: icon,
       dayLow: Math.round(tempmin),
@@ -30,7 +31,7 @@ function mapDailyForecasts(days) {
   });
 }
 
-function createDailyForecastCard({ day, icon, iconAltText, dayLow, dayHigh }, weekMin, weekMax) {
+function createDailyForecastCard({ day, date, icon, iconAltText, dayLow, dayHigh }, weekMin, weekMax) {
   const forecastCard = createLabelElement({
     tag: "div",
     className: "daily-card",
@@ -40,6 +41,12 @@ function createDailyForecastCard({ day, icon, iconAltText, dayLow, dayHigh }, we
     tag: "h2",
     text: day,
     className: "day",
+  });
+
+  const dateLabel = createLabelElement({
+    tag: "h2",
+    text: date,
+    className: "date",
   });
 
   const iconImg = createImageElement({
@@ -59,7 +66,7 @@ function createDailyForecastCard({ day, icon, iconAltText, dayLow, dayHigh }, we
 
   const rangeContainer = createTempRange(dayLow, dayHigh, weekMin, weekMax);
 
-  forecastCard.append(dayLabel, iconImg, tempLowLabel, rangeContainer, tempHighLabel);
+  forecastCard.append(dayLabel, dateLabel, iconImg, tempLowLabel, rangeContainer, tempHighLabel);
 
   return forecastCard;
 }

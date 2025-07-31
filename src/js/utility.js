@@ -5,10 +5,20 @@ export function formatHourLabel(datetime) {
   return `${hour12} ${period}`;
 }
 
-export function getDayOfWeek(dateString) {
+export function formatDateLabel(dateString, { mode }) {
+  const config = {
+    day: {
+      weekday: "short",
+    },
+    date: {
+      month: "short",
+      day: "numeric",
+    },
+  };
+
   const [year, month, day] = dateString.split("-").map(Number);
   const date = new Date(year, month - 1, day);
-  return date.toLocaleDateString("en-US", { weekday: "short" });
+  return date.toLocaleDateString("en-US", config[mode]);
 }
 
 export function createLabelElement({ tag, text, className }) {
