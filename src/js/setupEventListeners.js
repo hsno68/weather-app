@@ -8,5 +8,6 @@ export default function setupEventListeners() {
     e.preventDefault();
     const location = $input.value.trim();
     updateApp(location);
+    $form.reset();
   });
 }
