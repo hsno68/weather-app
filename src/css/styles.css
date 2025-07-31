@@ -195,6 +195,10 @@ form input {
 }
 
 @media (max-width: 1000px) {
+  .hourly-forecast-section {
+    padding: 1rem 0;
+  }
+
   .hourly-card {
     min-width: 100px;
   }
