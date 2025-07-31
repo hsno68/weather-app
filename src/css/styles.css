@@ -135,7 +135,8 @@ form input {
   gap: 0.5rem;
 }
 
-.hourly-card h2 {
+.hourly-card h2,
+.daily-card h2 {
   font-weight: normal;
 }
 
@@ -158,6 +159,7 @@ form input {
 
 .daily-card > .day {
   justify-self: start;
+  font-weight: bold;
 }
 
 .daily-card > .date {
