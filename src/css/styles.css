@@ -32,11 +32,14 @@ body {
     sans-serif;
   color: var(--color-text-primary);
   background-color: var(--color-background);
+  overflow-y: auto;
+}
+
+.main-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .form-control-container {
@@ -122,8 +125,8 @@ form input {
 
 .hourly-card {
   padding: 0.5rem 0.25rem;
-  min-width: 10%;
   display: flex;
+  flex: 0 0 10%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
