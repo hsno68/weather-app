@@ -5,11 +5,11 @@ import { createLabelElement, createImageElement, formatDateLabel } from "../util
 
 export default function renderDailyForecastCard() {
   const { $dailyForecast } = getDOMElements();
-  const { days, weekHigh, weekLow } = getWeatherData();
+  const { days, iconNow, weekHigh, weekLow } = getWeatherData();
 
   $dailyForecast.replaceChildren();
 
-  const fullDailyForecasts = mapDailyForecasts(days);
+  const fullDailyForecasts = mapDailyForecasts(days, iconNow);
 
   for (const dailyForecast of fullDailyForecasts) {
     const dailyForecastCard = createDailyForecastCard(dailyForecast, weekHigh, weekLow);
@@ -17,14 +17,15 @@ export default function renderDailyForecastCard() {
   }
 }
 
-function mapDailyForecasts(days) {
+function mapDailyForecasts(days, iconNow) {
   return days.map(({ datetime, icon, tempmin, tempmax }, index) => {
     const dayLabel = index === 0 ? "Today" : formatDateLabel(datetime, { mode: "day" });
+    const iconLabel = index === 0 ? getWeatherIcon(iconNow) : getWeatherIcon(icon);
     return {
       day: dayLabel,
       date: formatDateLabel(datetime, { mode: "date" }),
-      icon: getWeatherIcon(icon),
-      iconAltText: icon,
+      icon: iconLabel,
+      iconAltText: iconLabel,
       dayLow: Math.round(tempmin),
       dayHigh: Math.round(tempmax),
     };
