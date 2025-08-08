@@ -5,14 +5,15 @@ import { createLabelElement, createImageElement, formatDateLabel } from "../util
 
 export default function renderDailyForecastCard() {
   const { $dailyForecast } = getDOMElements();
-  const { days, iconNow, weekHigh, weekLow } = getWeatherData();
+  const { days, tempNow, iconNow, weekHigh, weekLow } = getWeatherData();
 
   $dailyForecast.replaceChildren();
 
   const fullDailyForecasts = mapDailyForecasts(days, iconNow);
 
   for (const dailyForecast of fullDailyForecasts) {
-    const dailyForecastCard = createDailyForecastCard(dailyForecast, weekHigh, weekLow);
+    const currentTemp = dailyForecast.day === "Today" ? tempNow : null;
+    const dailyForecastCard = createDailyForecastCard(dailyForecast, weekHigh, weekLow, currentTemp);
     $dailyForecast.appendChild(dailyForecastCard);
   }
 }
@@ -32,7 +33,7 @@ function mapDailyForecasts(days, iconNow) {
   });
 }
 
-function createDailyForecastCard({ day, date, icon, iconAltText, dayLow, dayHigh }, weekMin, weekMax) {
+function createDailyForecastCard({ day, date, icon, iconAltText, dayLow, dayHigh }, weekMin, weekMax, tempNow) {
   const forecastCard = createLabelElement({
     tag: "div",
     className: "daily-card",
@@ -65,14 +66,14 @@ function createDailyForecastCard({ day, date, icon, iconAltText, dayLow, dayHigh
     text: `${dayHigh}°`,
   });
 
-  const rangeContainer = createTempRange(dayLow, dayHigh, weekMin, weekMax);
+  const rangeContainer = createTempRange(tempNow, dayLow, dayHigh, weekMin, weekMax);
 
   forecastCard.append(dayLabel, dateLabel, iconImg, tempLowLabel, rangeContainer, tempHighLabel);
 
   return forecastCard;
 }
 
-function createTempRange(dayLow, dayHigh, weekMin, weekMax) {
+function createTempRange(tempNow = null, dayLow, dayHigh, weekMin, weekMax) {
   const rangeContainer = createLabelElement({
     tag: "div",
     className: "range-container",
@@ -95,6 +96,18 @@ function createTempRange(dayLow, dayHigh, weekMin, weekMax) {
   rangeBar.style.width = `${rangeWidthPercent}%`;
 
   rangeContainer.appendChild(rangeBar);
+
+  if (tempNow) {
+    const currentTempMarker = createLabelElement({
+      tag: "div",
+      className: "current-temp-marker",
+    });
+
+    const currentPercent = ((tempNow - min) / (max - min)) * 100;
+    currentTempMarker.style.left = `${currentPercent}%`;
+
+    rangeContainer.appendChild(currentTempMarker);
+  }
 
   return rangeContainer;
 }
